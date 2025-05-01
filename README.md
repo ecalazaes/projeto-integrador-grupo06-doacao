@@ -5,7 +5,7 @@ Este repositório contém dois microserviços: **ms-compra** e **ms-pagamento**,
 
 ## Configuração do Banco de Dados
 
-As aplicações estão se conectando com os bancos criados pelo Jhonny.
+As aplicações estão se conectando com os bancos criados pelo Jhonny. Pode conectar nos bancos com Dbeaver ou alguma outra ferramenta.
 - Servidor Mysql: edumysql.acesso.rj.senac.br
 - Porta: 3306
 - Usuário: adstv
