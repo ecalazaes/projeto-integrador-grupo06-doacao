@@ -14,6 +14,30 @@ As aplicações estão se conectando com os bancos criados pelo Jhonny.
 - Banco: bdtorrevcarrinho
 - Banco: bdtorrevpagamento
 
+## Configuração do RabbitMQ
+
+### Subir o RabbitMQ no Docker
+
+Execute o seguinte comando no cmd para iniciar o RabbitMQ via Docker:
+
+```sh
+docker run -d --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:management
+````
+
+ou 
+
+Execute o seguinte comando no terminal de uma das aplicações ms-compra ou ms-pagamento:
+
+```sh
+docker-compose up -d
+````
+
+### Acessando o painel de gerenciamento do RabbitMQ
+
+- **URL:** [http://localhost:15672/](http://localhost:15672/)  
+- **Usuário:** `guest`  
+- **Senha:** `guest`  
+
 ## Executando o Microserviço de Compra
 
 ### Passos:
@@ -21,6 +45,28 @@ As aplicações estão se conectando com os bancos criados pelo Jhonny.
 2. Testar a funcionalidade de doação em um pedido via Swagger:
 
    - **URL:** [http://localhost:8081/api](http://localhost:8080/api)
+  
+### Pedido Controller
+
+| Método | Endpoint                | Descrição                               |
+|--------|-------------------------|-------------------------------------------|
+| `GET`  | `/pedidos/{id}`         | Obtém os detalhes de um pedido específico |
+| `PUT`  | `/pedidos/{id}`         | Atualiza os dados de um pedido específico |
+| `DELETE`| `/pedidos/{id}`         | Exclui um pedido específico              |
+| `GET`  | `/pedidos`              | Lista todos os pedidos                    |
+| `POST` | `/pedidos`              | Cria um novo pedido                      |
+| `GET`  | `/pedidos/usuario/{usuarioId}` | Lista os pedidos de um usuário específico |
+
+### Cupom Controller
+
+| Método | Endpoint             | Descrição                               |
+|--------|----------------------|-------------------------------------------|
+| `GET`  | `/cupons/{id}`       | Obtém os detalhes de um cupom específico |
+| `PUT`  | `/cupons/{id}`       | Atualiza os dados de um cupom específico |
+| `DELETE`| `/cupons/{id}`       | Exclui um cupom específico              |
+| `GET`  | `/cupons`            | Lista todos os cupons                     |
+| `POST` | `/cupons`            | Cria um novo cupom                       |
+| `GET`  | `/cupons/codigo/{codigo}` | Obtém os detalhes de um cupom pelo código |
 
 ### Exemplo de requisição JSON:
 
@@ -104,6 +150,12 @@ Exemplo de JSON Pedido com doação e cupom de desconto.
 2. Testar a funcionalidade de doação direta no pagamento via Swagger:
 
    - **URL:** [http://localhost:8081/api](http://localhost:8082/api)
+  
+### Registro Pagamento Controller
+
+| Método | Endpoint                 | Descrição                      |
+|--------|--------------------------|---------------------------------|
+| `POST` | `/pagamentos/doacoes`    | Registra um pagamento de doação |
 
 ### Exemplo de requisição JSON:
 
@@ -123,30 +175,3 @@ Exemplo de JSON para doação direto no pagamento
   }
 }
 ````
-
-## Configuração do RabbitMQ
-
-### Subir o RabbitMQ no Docker
-
-Execute o seguinte comando no cmd para iniciar o RabbitMQ via Docker:
-
-```sh
-docker run -d --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:management
-````
-
-ou 
-
-Execute o seguinte comando no terminal de uma das aplicações ms-compra ou ms-pagamento:
-
-```sh
-docker-compose up -d
-````
-
-### Acessando o painel de gerenciamento do RabbitMQ
-
-- **URL:** [http://localhost:15672/](http://localhost:15672/)  
-- **Usuário:** `guest`  
-- **Senha:** `guest`  
-
-
-
