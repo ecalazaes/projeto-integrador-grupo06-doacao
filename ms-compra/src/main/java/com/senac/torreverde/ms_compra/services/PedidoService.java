@@ -78,6 +78,7 @@ public class PedidoService {
         // 7. Salva os PedidoItemDoacao, se existirem, após o PedidoItem estar salvo
         pedido.getItens().forEach(item -> pedidoItemDoacaoService.salvarDoacao(item.getDoacao()));
 
+        // 8. Converte os itens do pedido para DTOs para envio via RabbitMQ
         List<PedidoItemDTO> itensDTO = pedido.getItens().stream()
                 .map(item -> {
                     PedidoItemDTO dto = new PedidoItemDTO();
@@ -89,7 +90,7 @@ public class PedidoService {
                 })
                 .toList();
 
-        // 8. Converte o Pedido salvo para PedidoDTO para enviar mensagem ao rabbitmq
+        // 9. Converte o Pedido salvo para PedidoDTO para enviar mensagem ao rabbitmq
         PedidoDTO pedidoDTO = new PedidoDTO();
         pedidoDTO.setPedidoId(pedidoSalvo.getId());
         pedidoDTO.setUsuarioId(pedidoSalvo.getUsuarioId());
