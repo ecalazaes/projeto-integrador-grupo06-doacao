@@ -44,7 +44,7 @@ docker-compose up -d
 1. Rodar o arquivo **MsCompraApplication**.
 2. Testar a funcionalidade de doação em um pedido via Swagger:
 
-   - **URL:** [http://localhost:8081/api](http://localhost:8080/api)
+   - **URL:** [http://localhost:8080/api](http://localhost:8080/api)
   
 ### Pedido Controller
 
@@ -149,7 +149,7 @@ Exemplo de JSON Pedido com doação e cupom de desconto.
 1. Rodar o arquivo **MsPagamentoApplication**.
 2. Testar a funcionalidade de doação direta no pagamento via Swagger:
 
-   - **URL:** [http://localhost:8081/api](http://localhost:8082/api)
+   - **URL:** [http://localhost:8081/api](http://localhost:8081/api)
   
 ### Registro Pagamento Controller
 
