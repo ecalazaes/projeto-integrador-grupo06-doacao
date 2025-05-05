@@ -75,7 +75,7 @@ Exemplo de JSON de pedido sem doação e sem desconto
 
 {
   "usuarioId": 123,  
-  "observacoes": "Pedido sem doação e com desconto",
+  "observacoes": "Pedido sem doação e sem desconto",
   "itens": [
     {
       "estoqueId": 1,
