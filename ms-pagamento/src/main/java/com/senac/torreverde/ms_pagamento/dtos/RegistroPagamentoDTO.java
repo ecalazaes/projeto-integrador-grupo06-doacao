@@ -1,6 +1,7 @@
 package com.senac.torreverde.ms_pagamento.dtos;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class RegistroPagamentoDTO implements Serializable {
@@ -10,13 +11,13 @@ public class RegistroPagamentoDTO implements Serializable {
     private Integer numero;
     private LocalDateTime data;
     private String chaveNfe;
-    private Double valorTotal;
+    private BigDecimal valorTotal;
     private Integer status;
 
     public RegistroPagamentoDTO() {
     }
 
-    public RegistroPagamentoDTO(Integer id, Integer usuarioId, Integer numero, LocalDateTime data, String chaveNfe, Double valorTotal, Integer status) {
+    public RegistroPagamentoDTO(Integer id, Integer usuarioId, Integer numero, LocalDateTime data, String chaveNfe, BigDecimal valorTotal, Integer status) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.numero = numero;
@@ -66,11 +67,11 @@ public class RegistroPagamentoDTO implements Serializable {
         this.chaveNfe = chaveNfe;
     }
 
-    public Double getValorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(Double valorTotal) {
+    public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
     }
 

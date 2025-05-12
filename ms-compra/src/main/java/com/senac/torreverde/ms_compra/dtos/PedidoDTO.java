@@ -1,19 +1,20 @@
 package com.senac.torreverde.ms_compra.dtos;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class PedidoDTO implements Serializable {
 
     private Integer pedidoId;
     private Integer usuarioId;
-    private Double pedidoValorTotal;
+    private BigDecimal pedidoValorTotal;
     private List<PedidoItemDTO> itens;
 
     public PedidoDTO() {
     }
 
-    public PedidoDTO(Integer pedidoId, Integer usuarioId, Double pedidoValorTotal, List<PedidoItemDTO> itens) {
+    public PedidoDTO(Integer pedidoId, Integer usuarioId, BigDecimal pedidoValorTotal, List<PedidoItemDTO> itens) {
         this.pedidoId = pedidoId;
         this.usuarioId = usuarioId;
         this.pedidoValorTotal = pedidoValorTotal;
@@ -36,11 +37,11 @@ public class PedidoDTO implements Serializable {
         this.usuarioId = usuarioId;
     }
 
-    public Double getPedidoValorTotal() {
+    public BigDecimal getPedidoValorTotal() {
         return pedidoValorTotal;
     }
 
-    public void setPedidoValorTotal(Double pedidoValorTotal) {
+    public void setPedidoValorTotal(BigDecimal pedidoValorTotal) {
         this.pedidoValorTotal = pedidoValorTotal;
     }
 

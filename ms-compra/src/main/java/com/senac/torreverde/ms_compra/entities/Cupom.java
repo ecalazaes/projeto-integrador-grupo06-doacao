@@ -2,6 +2,7 @@ package com.senac.torreverde.ms_compra.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 // Entidade Cupom
@@ -23,7 +24,7 @@ public class Cupom {
     private Integer tipoDesconto;
 
     @Column(name = "cupom_valor_desconto", precision = 10)
-    private Double valorDesconto;
+    private BigDecimal valorDesconto;
 
     @Column(name = "cupom_validade")
     private LocalDate validade;
@@ -37,7 +38,7 @@ public class Cupom {
     public Cupom() {
     }
 
-    public Cupom(Integer id, String codigo, String descricao, Integer tipoDesconto, Double valorDesconto, LocalDate validade, Integer quantidadeUso, Integer status) {
+    public Cupom(Integer id, String codigo, String descricao, Integer tipoDesconto, BigDecimal valorDesconto, LocalDate validade, Integer quantidadeUso, Integer status) {
         this.id = id;
         this.codigo = codigo;
         this.descricao = descricao;
@@ -80,11 +81,11 @@ public class Cupom {
         this.tipoDesconto = tipoDesconto;
     }
 
-    public Double getValorDesconto() {
+    public BigDecimal getValorDesconto() {
         return valorDesconto;
     }
 
-    public void setValorDesconto(Double valorDesconto) {
+    public void setValorDesconto(BigDecimal valorDesconto) {
         this.valorDesconto = valorDesconto;
     }
 

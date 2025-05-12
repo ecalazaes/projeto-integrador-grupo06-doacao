@@ -2,6 +2,8 @@ package com.senac.torreverde.ms_compra.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 // Entidade PedidoItem
 @Entity
 public class PedidoItem {
@@ -17,11 +19,11 @@ public class PedidoItem {
     @Column(name = "pedido_item_quantidade")
     private Integer quantidade;
 
-    @Column(name = "pedido_item_preco_unitario")
-    private Double precoUnitario;
+    @Column(name = "pedido_item_preco_unitario", precision = 10, scale = 2)
+    private BigDecimal precoUnitario;
 
-    @Column(name = "pedido_item_sub_total")
-    private Double subTotal;
+    @Column(name = "pedido_item_sub_total", precision = 10, scale = 2)
+    private BigDecimal subTotal;
 
     @Column(name = "pedido_item_status")
     private Integer status;
@@ -36,7 +38,7 @@ public class PedidoItem {
     public PedidoItem() {
     }
 
-    public PedidoItem(Integer id, Integer estoqueId, Integer quantidade, Double precoUnitario, Double subTotal, Integer status, Pedido pedido, PedidoItemDoacao doacao) {
+    public PedidoItem(Integer id, Integer estoqueId, Integer quantidade, BigDecimal precoUnitario, BigDecimal subTotal, Integer status, Pedido pedido, PedidoItemDoacao doacao) {
         this.id = id;
         this.estoqueId = estoqueId;
         this.quantidade = quantidade;
@@ -71,19 +73,19 @@ public class PedidoItem {
         this.quantidade = quantidade;
     }
 
-    public Double getPrecoUnitario() {
+    public BigDecimal getPrecoUnitario() {
         return precoUnitario;
     }
 
-    public void setPrecoUnitario(Double precoUnitario) {
+    public void setPrecoUnitario(BigDecimal precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
 
-    public Double getSubTotal() {
+    public BigDecimal getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(Double subTotal) {
+    public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
     }
 

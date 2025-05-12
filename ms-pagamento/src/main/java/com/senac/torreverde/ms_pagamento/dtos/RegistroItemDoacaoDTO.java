@@ -1,9 +1,11 @@
 package com.senac.torreverde.ms_pagamento.dtos;
 
+import java.math.BigDecimal;
+
 // Classe DTO para referenciar a RegistroItemDoacao
 public class RegistroItemDoacaoDTO {
 
-    private Double valorDoacao;
+    private BigDecimal valorDoacao;
     private String doadorNome;
     private String doadorIdentificacao;
     private Integer doadorTipo;
@@ -14,7 +16,7 @@ public class RegistroItemDoacaoDTO {
     public RegistroItemDoacaoDTO() {
     }
 
-    public RegistroItemDoacaoDTO(Double valorDoacao, String doadorNome, String doadorIdentificacao, Integer doadorTipo, String doadorPaisOrigem, String formaTransferencia, String idTransacao) {
+    public RegistroItemDoacaoDTO(BigDecimal valorDoacao, String doadorNome, String doadorIdentificacao, Integer doadorTipo, String doadorPaisOrigem, String formaTransferencia, String idTransacao) {
         this.valorDoacao = valorDoacao;
         this.doadorNome = doadorNome;
         this.doadorIdentificacao = doadorIdentificacao;
@@ -24,11 +26,11 @@ public class RegistroItemDoacaoDTO {
         this.idTransacao = idTransacao;
     }
 
-    public Double getValorDoacao() {
+    public BigDecimal getValorDoacao() {
         return valorDoacao;
     }
 
-    public void setValorDoacao(Double valorDoacao) {
+    public void setValorDoacao(BigDecimal valorDoacao) {
         this.valorDoacao = valorDoacao;
     }
 

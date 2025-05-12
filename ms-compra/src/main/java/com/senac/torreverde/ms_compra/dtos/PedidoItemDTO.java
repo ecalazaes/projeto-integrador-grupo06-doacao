@@ -1,18 +1,19 @@
 package com.senac.torreverde.ms_compra.dtos;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class PedidoItemDTO implements Serializable {
 
     private Integer estoqueId;
     private Integer quantidade;
-    private Double precoUnitario;
-    private Double subTotal;
+    private BigDecimal precoUnitario;
+    private BigDecimal subTotal;
 
     public PedidoItemDTO() {
     }
 
-    public PedidoItemDTO(Integer estoqueId, Integer quantidade, Double precoUnitario, Double subTotal) {
+    public PedidoItemDTO(Integer estoqueId, Integer quantidade, BigDecimal precoUnitario, BigDecimal subTotal) {
         this.estoqueId = estoqueId;
         this.quantidade = quantidade;
         this.precoUnitario = precoUnitario;
@@ -35,19 +36,19 @@ public class PedidoItemDTO implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Double getPrecoUnitario() {
+    public BigDecimal getPrecoUnitario() {
         return precoUnitario;
     }
 
-    public void setPrecoUnitario(Double precoUnitario) {
+    public void setPrecoUnitario(BigDecimal precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
 
-    public Double getSubTotal() {
+    public BigDecimal getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(Double subTotal) {
+    public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
     }
 }

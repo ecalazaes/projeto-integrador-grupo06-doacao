@@ -2,6 +2,7 @@ package com.senac.torreverde.ms_pagamento.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 // Entidade RegistroItemDoacao
@@ -14,7 +15,7 @@ public class RegistroItemDoacao {
     private Integer id;
 
     @Column(name = "registro_pagamento_item_doacao_valor")
-    private Double valor;
+    private BigDecimal valor;
 
     @Column(name = "registro_item_doacao_data")
     private LocalDateTime data;
@@ -39,12 +40,12 @@ public class RegistroItemDoacao {
 
     @OneToOne
     @JoinColumn(name = "registro_pagamento_item_id")
-    private RegistroPagamentoItem registroPagamentoItem;
+    private RegistroPagamentoItem registroPagamentoItemId;
 
     public RegistroItemDoacao() {
     }
 
-    public RegistroItemDoacao(Integer id, Double valor, LocalDateTime data, String doadorNome, String doadorIdentificacao, Integer doadorTipo, String doadorPaisOrigem, String formaTransferencia, String idTransacao, RegistroPagamentoItem registroPagamentoItem) {
+    public RegistroItemDoacao(Integer id, BigDecimal valor, LocalDateTime data, String doadorNome, String doadorIdentificacao, Integer doadorTipo, String doadorPaisOrigem, String formaTransferencia, String idTransacao, RegistroPagamentoItem registroPagamentoItemId) {
         this.id = id;
         this.valor = valor;
         this.data = data;
@@ -54,7 +55,7 @@ public class RegistroItemDoacao {
         this.doadorPaisOrigem = doadorPaisOrigem;
         this.formaTransferencia = formaTransferencia;
         this.idTransacao = idTransacao;
-        this.registroPagamentoItem = registroPagamentoItem;
+        this.registroPagamentoItemId = registroPagamentoItemId;
     }
 
     public Integer getId() {
@@ -65,11 +66,11 @@ public class RegistroItemDoacao {
         this.id = id;
     }
 
-    public Double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
@@ -129,11 +130,11 @@ public class RegistroItemDoacao {
         this.idTransacao = idTransacao;
     }
 
-    public RegistroPagamentoItem getRegistroPagamentoItem() {
-        return registroPagamentoItem;
+    public RegistroPagamentoItem getRegistroPagamentoItemId() {
+        return registroPagamentoItemId;
     }
 
-    public void setRegistroPagamentoItem(RegistroPagamentoItem registroPagamentoItem) {
-        this.registroPagamentoItem = registroPagamentoItem;
+    public void setRegistroPagamentoItemId(RegistroPagamentoItem registroPagamentoItemId) {
+        this.registroPagamentoItemId = registroPagamentoItemId;
     }
 }

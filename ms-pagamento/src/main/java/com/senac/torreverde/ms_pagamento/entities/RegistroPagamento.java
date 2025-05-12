@@ -2,6 +2,7 @@ package com.senac.torreverde.ms_pagamento.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,22 +27,22 @@ public class RegistroPagamento {
     @Column(name = "registro_pagamento_chave_nfe", length = 45)
     private String chaveNfe;
 
-    @Column(name = "registro_pagamento_valor_total")
-    private Double valorTotal;
+    @Column(name = "registro_pagamento_valor_total", precision = 10, scale = 2)
+    private BigDecimal valorTotal;
 
     @Column(name = "registro_pagamento_status")
     private Integer status;
 
-    @OneToOne(mappedBy = "registroPagamento", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @OneToOne(mappedBy = "registroPagamentoId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     private EntregaEndereco entregaEndereco;
 
-    @OneToMany(mappedBy = "registroPagamento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "registroPagamentoId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RegistroPagamentoItem> itens;
 
     public RegistroPagamento() {
     }
 
-    public RegistroPagamento(Integer id, Integer usuarioId, Integer numero, LocalDateTime data, String chaveNfe, Double valorTotal, Integer status, EntregaEndereco entregaEndereco, List<RegistroPagamentoItem> itens) {
+    public RegistroPagamento(Integer id, Integer usuarioId, Integer numero, LocalDateTime data, String chaveNfe, BigDecimal valorTotal, Integer status, EntregaEndereco entregaEndereco, List<RegistroPagamentoItem> itens) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.numero = numero;
@@ -93,11 +94,11 @@ public class RegistroPagamento {
         this.chaveNfe = chaveNfe;
     }
 
-    public Double getValorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(Double valorTotal) {
+    public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
     }
 

@@ -6,6 +6,7 @@ import com.senac.torreverde.ms_compra.repositories.PedidoItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +54,8 @@ public class PedidoItemService {
     // Metodo para vincular um pedidoItem a um pedido
     public void vincularPedidoItemAoPedido(PedidoItem item, Pedido pedido){
         item.setPedido(pedido); // Garante o vínculo
-        item.setSubTotal(item.getPrecoUnitario() * item.getQuantidade());
+        BigDecimal quantidadeBigDecimal = BigDecimal.valueOf(item.getQuantidade());
+        item.setSubTotal(item.getPrecoUnitario().multiply(quantidadeBigDecimal));
         item.setStatus(1);
 
         // Se houver doação, garante a associação com o PedidoItem

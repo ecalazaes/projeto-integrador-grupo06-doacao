@@ -2,6 +2,8 @@ package com.senac.torreverde.ms_pagamento.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 // Entidade RegistroPagamentoItem
 @Entity
 public class RegistroPagamentoItem {
@@ -20,23 +22,23 @@ public class RegistroPagamentoItem {
     @Column(name = "registro_pagamento_item_quantidade")
     private Integer quantidade;
 
-    @Column(name = "registro_pagamento_item_preco_unitario")
-    private Double precoUnitario;
+    @Column(name = "registro_pagamento_item_preco_unitario", precision = 10, scale = 2)
+    private BigDecimal precoUnitario;
 
-    @Column(name = "registro_pagamento_item_sub_total")
-    private Double subTotal;
+    @Column(name = "registro_pagamento_item_sub_total", precision = 10, scale = 2)
+    private BigDecimal subTotal;
 
     @ManyToOne
     @JoinColumn(name = "registro_pagamento_id")
     private RegistroPagamento registroPagamento;
 
-    @OneToOne(mappedBy = "registroPagamentoItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @OneToOne(mappedBy = "registroPagamentoItemId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     private RegistroItemDoacao doacao;
 
     public RegistroPagamentoItem() {
     }
 
-    public RegistroPagamentoItem(Integer id, Integer registroPagamentoId, Integer estoqueId, Integer quantidade, Double precoUnitario, Double subTotal, RegistroPagamento registroPagamento, RegistroItemDoacao doacao) {
+    public RegistroPagamentoItem(Integer id, Integer registroPagamentoId, Integer estoqueId, Integer quantidade, BigDecimal precoUnitario, BigDecimal subTotal, RegistroPagamento registroPagamento, RegistroItemDoacao doacao) {
         this.id = id;
         this.registroPagamentoId = registroPagamentoId;
         this.estoqueId = estoqueId;
@@ -79,19 +81,19 @@ public class RegistroPagamentoItem {
         this.quantidade = quantidade;
     }
 
-    public Double getPrecoUnitario() {
+    public BigDecimal getPrecoUnitario() {
         return precoUnitario;
     }
 
-    public void setPrecoUnitario(Double precoUnitario) {
+    public void setPrecoUnitario(BigDecimal precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
 
-    public Double getSubTotal() {
+    public BigDecimal getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(Double subTotal) {
+    public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
     }
 

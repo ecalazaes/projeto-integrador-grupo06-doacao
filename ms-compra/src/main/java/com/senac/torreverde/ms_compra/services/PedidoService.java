@@ -11,6 +11,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -109,32 +111,32 @@ public class PedidoService {
 
     // Metodo para calcular o valor total do pedido
     private void calcularValorTotal(Pedido pedido) {
-        double total = pedido.getItens().stream()
-                .mapToDouble(PedidoItem::getSubTotal)
-                .sum();
+        BigDecimal total = pedido.getItens().stream()
+                .map(PedidoItem::getSubTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        double totalDoacoes = pedido.getItens().stream()
+        BigDecimal totalDoacoes = pedido.getItens().stream()
                 .filter(item -> item.getDoacao() != null)
-                .mapToDouble(item -> item.getDoacao().getValor())
-                .sum();
+                .map(item -> item.getDoacao().getValor())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        total += totalDoacoes; // Adiciona o valor das doações ao total do pedido
+        total = total.add(totalDoacoes);; // Adiciona o valor das doações ao total do pedido
 
         if (pedido.getCupom() != null) {
-            double desconto = calcularDesconto(pedido.getCupom(), total);
-            total -= desconto;
+            BigDecimal desconto = calcularDesconto(pedido.getCupom(), total);
+            total = total.subtract(desconto);
             pedido.setDescontoAplicado(desconto);
         }
 
         pedido.setValorTotal(total);
     }
 
-    // Metodo para calcular o desconto aplicado ao pedido
-    private double calcularDesconto(Cupom cupom, double valorTotal) {
+    private BigDecimal calcularDesconto(Cupom cupom, BigDecimal valorTotal) {
         if (cupom.getTipoDesconto() == 1) { // Tipo de desconto: Porcentagem
-            return valorTotal * (cupom.getValorDesconto() / 100.0);
-        } else {
-            return Math.min(cupom.getValorDesconto(), valorTotal);
+            BigDecimal percentualDesconto = cupom.getValorDesconto().divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+            return valorTotal.multiply(percentualDesconto).setScale(2, RoundingMode.HALF_UP);
+        } else { // Tipo de desconto: Valor fixo
+            return valorTotal.min(cupom.getValorDesconto()).setScale(2, RoundingMode.HALF_UP);
         }
     }
 }

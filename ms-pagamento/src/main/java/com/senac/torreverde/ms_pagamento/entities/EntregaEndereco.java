@@ -11,28 +11,24 @@ public class EntregaEndereco {
     @Column(name = "entrega_endereco_id")
     private Integer id;
 
-    @Column(name = "entrega_endereco", length = 300)
+    @Column(name = "entrega_endereco_endereco", length = 300)
     private String endereco;
 
     @Column(name = "entrega_endereco_cep", length = 7)
     private String cep;
 
-    @Column(name = "registro_pagamento_id", insertable = false, updatable = false)
-    private Integer registroPagamentoId;
-
     @OneToOne
     @JoinColumn(name = "registro_pagamento_id")
-    private RegistroPagamento registroPagamento;
+    private RegistroPagamento registroPagamentoId;
 
     public EntregaEndereco() {
     }
 
-    public EntregaEndereco(Integer id, String endereco, String cep, Integer registroPagamentoId, RegistroPagamento registroPagamento) {
+    public EntregaEndereco(Integer id, String endereco, String cep, RegistroPagamento registroPagamentoId) {
         this.id = id;
         this.endereco = endereco;
         this.cep = cep;
         this.registroPagamentoId = registroPagamentoId;
-        this.registroPagamento = registroPagamento;
     }
 
     public Integer getId() {
@@ -59,19 +55,11 @@ public class EntregaEndereco {
         this.cep = cep;
     }
 
-    public Integer getRegistroPagamentoId() {
+    public RegistroPagamento getRegistroPagamentoId() {
         return registroPagamentoId;
     }
 
-    public void setRegistroPagamentoId(Integer registroPagamentoId) {
+    public void setRegistroPagamentoId(RegistroPagamento registroPagamentoId) {
         this.registroPagamentoId = registroPagamentoId;
-    }
-
-    public RegistroPagamento getRegistroPagamento() {
-        return registroPagamento;
-    }
-
-    public void setRegistroPagamento(RegistroPagamento registroPagamento) {
-        this.registroPagamento = registroPagamento;
     }
 }

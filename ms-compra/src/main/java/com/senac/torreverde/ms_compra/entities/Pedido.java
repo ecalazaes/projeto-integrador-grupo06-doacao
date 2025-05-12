@@ -3,6 +3,7 @@ package com.senac.torreverde.ms_compra.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,8 @@ public class Pedido {
     @Column(name = "usuario_id")
     private Integer usuarioId;
 
-    @Column(name = "pedido_valor_total")
-    private Double valorTotal;
+    @Column(name = "pedido_valor_total", precision = 2, scale = 2)
+    private BigDecimal valorTotal;
 
     @Column(name = "pedido_status")
     private Integer status;
@@ -32,8 +33,8 @@ public class Pedido {
     @JoinColumn(name = "cupom_id")
     private Cupom cupom;
 
-    @Column(name = "pedido_desconto_aplicado")
-    private Double descontoAplicado;
+    @Column(name = "pedido_desconto_aplicado", precision = 2, scale = 2)
+    private BigDecimal descontoAplicado;
 
     @Column(name = "pedido_observacoes", columnDefinition = "TEXT")
     private String observacoes;
@@ -45,7 +46,7 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Integer id, LocalDateTime data, Integer usuarioId, Double valorTotal, Integer status, Cupom cupom, Double descontoAplicado, String observacoes, List<PedidoItem> itens) {
+    public Pedido(Integer id, LocalDateTime data, Integer usuarioId, BigDecimal valorTotal, Integer status, Cupom cupom, BigDecimal descontoAplicado, String observacoes, List<PedidoItem> itens) {
         this.id = id;
         this.data = data;
         this.usuarioId = usuarioId;
@@ -81,11 +82,11 @@ public class Pedido {
         this.usuarioId = usuarioId;
     }
 
-    public Double getValorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(Double valorTotal) {
+    public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -105,11 +106,11 @@ public class Pedido {
         this.cupom = cupom;
     }
 
-    public Double getDescontoAplicado() {
+    public BigDecimal getDescontoAplicado() {
         return descontoAplicado;
     }
 
-    public void setDescontoAplicado(Double descontoAplicado) {
+    public void setDescontoAplicado(BigDecimal descontoAplicado) {
         this.descontoAplicado = descontoAplicado;
     }
 

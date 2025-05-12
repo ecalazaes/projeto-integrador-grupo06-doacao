@@ -2,6 +2,8 @@ package com.senac.torreverde.ms_compra.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 // Entidade PedidoItemDoacao
 
 @Entity
@@ -12,8 +14,8 @@ public class PedidoItemDoacao {
     @Column(name = "pedido_item_doacao_id")
     private Integer id;
 
-    @Column(name = "pedido_item_doacao_valor")
-    private Double valor;
+    @Column(name = "pedido_item_doacao_valor", precision = 10, scale = 2)
+    private BigDecimal valor;
 
     @OneToOne
     @JoinColumn(name = "pedido_item_id", nullable = false)
@@ -22,7 +24,7 @@ public class PedidoItemDoacao {
     public PedidoItemDoacao() {
     }
 
-    public PedidoItemDoacao(Integer id, Double valor, PedidoItem pedidoItem) {
+    public PedidoItemDoacao(Integer id, BigDecimal valor, PedidoItem pedidoItem) {
         this.id = id;
         this.valor = valor;
         this.pedidoItem = pedidoItem;
@@ -36,11 +38,11 @@ public class PedidoItemDoacao {
         this.id = id;
     }
 
-    public Double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 

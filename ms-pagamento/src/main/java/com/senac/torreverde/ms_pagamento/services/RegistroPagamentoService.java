@@ -84,7 +84,8 @@ public class RegistroPagamentoService {
 
         RegistroItemDoacaoDTO registroItemDoacaoDTO = request.getDetalhesDoacao();
 
-        int statusPagamento = new Random().nextInt(2);
+        // Mock de status pagamento, Exemplo: 1 = Pagamento Confirmado, 2 = Pagamento Recusado
+        int statusPagamento = new Random().nextInt(1,3);
 
         // Criando o registro de Pagamento
         RegistroPagamento registroPagamento = new RegistroPagamento();
@@ -108,7 +109,7 @@ public class RegistroPagamentoService {
 
         // Criando o registro de Doacao
         RegistroItemDoacao registroItemDoacao = new RegistroItemDoacao();
-        registroItemDoacao.setRegistroPagamentoItem(itemSalvo);
+        registroItemDoacao.setRegistroPagamentoItemId(itemSalvo);
         registroItemDoacao.setValor(registroItemDoacaoDTO.getValorDoacao());
         registroItemDoacao.setData(LocalDateTime.now());
         registroItemDoacao.setDoadorNome(registroItemDoacaoDTO.getDoadorNome());
